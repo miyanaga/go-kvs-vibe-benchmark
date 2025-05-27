@@ -19,6 +19,7 @@ func (b *Badger) Name() string {
 func (b *Badger) Open(path string) error {
 	opts := badger.DefaultOptions(path)
 	opts.Logger = nil
+	opts.SyncWrites = false
 	db, err := badger.Open(opts)
 	if err != nil {
 		return err

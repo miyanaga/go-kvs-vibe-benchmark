@@ -22,7 +22,9 @@ func (b *BBolt) Name() string {
 
 func (b *BBolt) Open(path string) error {
 	dbPath := filepath.Join(path, "bbolt.db")
-	db, err := bolt.Open(dbPath, 0600, nil)
+	opts := bolt.DefaultOptions
+	opts.NoSync = true
+	db, err := bolt.Open(dbPath, 0600, opts)
 	if err != nil {
 		return err
 	}

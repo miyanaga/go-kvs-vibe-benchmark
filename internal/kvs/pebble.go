@@ -37,7 +37,7 @@ func (p *Pebble) Set(key string, value *Value) error {
 	if err != nil {
 		return err
 	}
-	return p.db.Set([]byte(key), data, pebble.Sync)
+	return p.db.Set([]byte(key), data, pebble.NoSync)
 }
 
 func (p *Pebble) Get(key string) (*Value, error) {

@@ -21,7 +21,7 @@ func (s *SQLite) Name() string {
 
 func (s *SQLite) Open(path string) error {
 	dbPath := filepath.Join(path, "sqlite.db")
-	db, err := sql.Open("sqlite3", dbPath)
+	db, err := sql.Open("sqlite3", dbPath+"?synchronous=OFF&journal_mode=MEMORY")
 	if err != nil {
 		return err
 	}

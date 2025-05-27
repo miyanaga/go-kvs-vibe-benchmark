@@ -2,6 +2,7 @@ package kvs
 
 import (
 	"github.com/syndtr/goleveldb/leveldb"
+	"github.com/syndtr/goleveldb/leveldb/opt"
 )
 
 type LevelDB struct {
@@ -17,7 +18,10 @@ func (l *LevelDB) Name() string {
 }
 
 func (l *LevelDB) Open(path string) error {
-	db, err := leveldb.OpenFile(path, nil)
+	opts := &opt.Options{
+		NoSync: true,
+	}
+	db, err := leveldb.OpenFile(path, opts)
 	if err != nil {
 		return err
 	}
